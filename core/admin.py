@@ -4,4 +4,4 @@ from .models import Likes
 
 @admin.register(Likes)
 class LikesAdmin(admin.ModelAdmin):
-    list_display = ('id', 'id_auth', 'id_pizza', 'nota', 'comentario')
+    list_display = ('id', 'id_usuario', 'id_pizza', 'id_pedido',  'comentario')

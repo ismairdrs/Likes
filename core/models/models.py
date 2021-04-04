@@ -8,7 +8,7 @@ class Likes(models.Model):
     id_usuario = models.CharField(max_length=150)
     id_pizza = models.CharField(max_length=100)
     id_pedido = models.CharField(max_length=100)
-    nota = models.DecimalField(max_digits=2, decimal_places=1, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    nota = models.IntegerField(MinValueValidator(0), MaxValueValidator(5))
     comentario = models.TextField(blank=True, null=True)
 
     def __str__(self):

@@ -10,5 +10,8 @@ from core.models import Likes
 class LikesViewSet(mixins.CreateModelMixin,
                    mixins.ListModelMixin,
                    viewsets.GenericViewSet):
-    queryset = Likes.objects.all()
+    #queryset = Likes.objects.all()
     serializer_class = LikesSerializer
+
+    def get_queryset(self):
+        return Likes.objects.all()

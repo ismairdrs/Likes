@@ -7,4 +7,4 @@ class LikesSerializer(ModelSerializer):
 
     class Meta:
         model = Likes
-        fields = ('id', 'id_auth', 'nota', 'comentario')
+        fields = ('id', )
