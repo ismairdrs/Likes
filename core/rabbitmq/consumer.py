@@ -1,17 +1,24 @@
-import uuid
+import json
 
 import pika
 
 from decouple import config
-#rabbitmq = config('RABBITMQ')
+rabbitmq = config('RABBITMQ')
 
 
 class Consumer():
+    _instances = {}
+
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            instance = super().__call__(*args, **kwargs)
+            cls._instances[cls] = instance
+        return cls._instances[cls]
 
     def _init_channel(self):
         self.connection = pika.BlockingConnection(
             #pika.URLParameters(rabbitmq)
-            pika.URLParameters("amqps://gjjkcnyh:MU-YKQRp20MMAP_RrOwvf-HhmMBBY1sS@hornet.rmq.cloudamqp.com/gjjkcnyh")
+            pika.URLParameters(rabbitmq)
         )
         self.channel = self.connection.channel()
 
@@ -39,3 +46,5 @@ class Consumer():
 
 
 consumer = Consumer()
+print(f'Consumer foi instanciado: {consumer}')
+
