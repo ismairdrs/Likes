@@ -12,18 +12,15 @@ class Command(BaseCommand):
     def callback(self, channel, method, properties, body):
         print(f'mensagem recebida no serviço de Likes: {body}')
         payload = json.loads(body)
-        nota = payload.get('nota')
-
 
         try:
             like = Likes.objects.create(
                id_usuario=payload.get('id_usuario'),
                 id_pizza=payload.get('id_pizza'),
                 id_pedido=payload.get('id_pedido'),
-                nota=nota if 0 <= nota <= 5 else 0,
+                nota=payload.get('nota'),
                 comentario=payload.get('comentario')
             )
-            print(f'objeto criado: {like.id}')
         except:
             print(f'UUIDField enviado inválido, avaliação foi descartada!')
             pass
