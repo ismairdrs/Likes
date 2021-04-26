@@ -23,7 +23,6 @@ class Command(BaseCommand):
             )
         except:
             print(f'UUIDField enviado inválido, avaliação foi descartada!')
-            pass
 
     def handle(self, *args, **options):
         consumer.consume(
