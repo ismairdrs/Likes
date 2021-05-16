@@ -33,6 +33,7 @@ INSTALLED_APPS = [
 
 
 MIDDLEWARE = [
+    'mymiddlewares.middleware.ProxyMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -112,3 +113,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+# CELERY ROUTES
+CELERY_ROUTES = {
+    'core.tasks.likes': {'queue': 'likes'},
+    'core.tasks.endereco': {'queue': 'endereco'},
+}
